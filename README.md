@@ -2,6 +2,12 @@
 
 Load different templates based on device capability.
 
+## Installation
+
+Simply install using Bower:
+
+    bower install --save angular-adaptive-templating
+
 ## Usage
 
 ### 1. Configure 'adaptiveTemplating' as a dependency
