@@ -47,6 +47,9 @@
       /**
        * Reformats the final URL. Override it if necessary.
        * The default implementation removes superfluous slashes and dots.
+       *
+       * @param {string} url The original URL.
+       * @returns {string} The reformatted URL.
        */
       this.normalizeUrl = (function () {
         var slashDot = /\/\.+/g;
@@ -65,7 +68,7 @@
        *
        * @param {string} url The current URL.
        * @param {string} match The matching test pattern.
-       * @param {string} testname The name of the test (without '?').
+       * @param {string} testname The name of the test.
        * @returns {string} The new URL.
        */
       this.whenTrue = function (url, match, testname) {
@@ -77,7 +80,7 @@
        *
        * @param {string} url The current URL.
        * @param {string} match The matching test pattern.
-       * @param {string} testname The name of the test (without '?').
+       * @param {string} testname The name of the test.
        * @returns {string} The new URL.
        */
       this.whenFalse = function (url, match/*, testname*/) {

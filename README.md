@@ -56,3 +56,59 @@ Or in directives:
 Or with ngInclude:
 
     <div ng-include="'partials/{mobile}/something.html'"></div>
+
+## Provider API
+
+These are available in your module's config block.
+
+### {function} addTest({string} name, {boolean|function} test)
+Register a new test, or replace an existing one.
+
+    @param {string} name The name by which determines the pattern.
+    @param {boolean|function} test The actual test, as boolean or function.
+    @returns {this} Reference to this, to enable method chaining.
+
+### {function} removeTest({string} name)
+Remove a registered test from the list of tests.
+
+    @param {string} name The name of the test.
+    @returns {this} Reference to this, to enable method chaining.
+
+### {function} getTests()
+Retrieve all registered tests.
+
+    @returns {Object} Hash of all tests.
+
+### {RegExp} patternRegExp
+Regular expression by which to match test patterns. Override it if necessary.
+The default pattern matches strings like {testname}.
+
+### {function} normalizeUrl({string} url)
+Reformats the final URL. Override it if necessary.
+The default implementation removes superfluous slashes and dots.
+
+    @param {string} url The original URL.
+    @returns {string} The reformatted URL.
+
+### {function} whenTrue({string} url, {string} match, {string} testname)
+Callback to rewrite the URL when a test succeeds. Override it to suit your needs.
+
+    @param {string} url The current URL.
+    @param {string} match The matching test pattern.
+    @param {string} testname The name of the test.
+    @returns {string} The new URL.
+
+### {function} whenFalse({string} url, {string} match, {string} testname)
+Callback to rewrite the URL when a test fails. Override it to suit your needs.
+
+    @param {string} url The current URL.
+    @param {string} match The matching test pattern.
+    @param {string} testname The name of the test.
+    @returns {string} The new URL.
+
+### {function} rewriteUrl({string} templateUrl)
+Takes a URL containing test patterns and rewrites it according to the test results.
+
+    @param {string} templateUrl The original URL.
+    @returns {string} The rewritten URL.
+
