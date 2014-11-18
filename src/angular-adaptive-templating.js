@@ -124,6 +124,17 @@
 
     .config(['$provide', 'adaptiveTemplatingProvider', function ($provide, adaptiveTemplatingProvider) {
       /**
+       * Decorates the $templateCache.get method, rewriting the request URL to enable adaptive templating.
+       */
+      $provide.decorator('$templateCache', function($delegate) {
+        var getFn = $delegate.get;
+        $delegate.get = function () {
+          arguments[0] = adaptiveTemplatingProvider.rewriteUrl(arguments[0]);
+          return getFn.apply(this, arguments);
+        };
+        return $delegate;
+      });
+      /**
        * Decorates the $http.get method, rewriting the request URL to enable adaptive templating.
        */
       $provide.decorator('$http', function($delegate) {
